@@ -22,7 +22,9 @@ public class AudioChangeReceiver extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent intent) {
         if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
 //            final int state = intent.getIntExtra("state", -1);
-            audioEventListener.onChanged();
+            if(audioEventListener != null) {
+                audioEventListener.onChanged();
+            }
         }
 //        else if(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED.equals(intent.getAction())){
 //            audioEventListener.onChanged();

@@ -50,7 +50,9 @@ public class FlutterAudioManagerPlugin implements FlutterPlugin, MethodCallHandl
   static AudioEventListener listener = new AudioEventListener() {
     @Override
     public void onChanged() {
-      channel.invokeMethod("inputChanged", 1);
+      if(channel != null) {
+        channel.invokeMethod("inputChanged", 1);
+      }
     }
   };
 
@@ -78,7 +80,9 @@ public class FlutterAudioManagerPlugin implements FlutterPlugin, MethodCallHandl
     audioManager.stopBluetoothSco();
     audioManager.setBluetoothScoOn(false);
     audioManager.setSpeakerphoneOn(false);
-    listener.onChanged();
+    if(listener != null) {
+      listener.onChanged();
+    }
     return true;
   }
 
@@ -87,7 +91,9 @@ public class FlutterAudioManagerPlugin implements FlutterPlugin, MethodCallHandl
     audioManager.stopBluetoothSco();
     audioManager.setBluetoothScoOn(false);
     audioManager.setSpeakerphoneOn(true);
-    listener.onChanged();
+    if(listener != null) {
+      listener.onChanged();
+    }
     return true;
   }
 
@@ -99,7 +105,9 @@ public class FlutterAudioManagerPlugin implements FlutterPlugin, MethodCallHandl
     audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
     audioManager.startBluetoothSco();
     audioManager.setBluetoothScoOn(true);
-    listener.onChanged();
+    if(listener != null) {
+      listener.onChanged();
+    }
     return true;
   }
 
